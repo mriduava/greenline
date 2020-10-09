@@ -16,4 +16,8 @@ public class Bus {
     public void setRegNumber(String regNumber) {
         this.regNumber = regNumber;
     }
+
+    public String toString(){
+        return "Bus Registration Number: " + regNumber.toUpperCase();
+    }
 }
