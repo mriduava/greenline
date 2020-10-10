@@ -1,6 +1,7 @@
 package com.mriduava;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Greenline {
@@ -33,6 +34,7 @@ public class Greenline {
                     loginUser();
                     break;
                 case AVAILABLE_SEATS:
+                    showAvailableSeats();
                     break;
                 case RESERVE_SEAT:
                     break;
@@ -139,6 +141,19 @@ public class Greenline {
             }
         }
         return false;
+    }
+
+
+    Seat seat = new Seat();
+
+    public void showAvailableSeats(){
+        for(int i=1; i<=20; i++){
+            seat.add(i);
+        }
+        Iterator<Integer> it = seat.getIterator();
+        while (it.hasNext()){
+            System.out.println(it.next() + " ");
+        }
     }
 
 }
