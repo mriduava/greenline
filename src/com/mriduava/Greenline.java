@@ -8,9 +8,20 @@ public class Greenline {
 
     private ArrayList<Passenger> passengers = new ArrayList<>();
 
-    private String companyName = "";
-    public Greenline(String companyName){
-        this.companyName = companyName;
+    private static Greenline greenline;
+    private static String COMPANY_NAME = "GREEN LINE";
+    private Greenline(String companyName){
+        this.COMPANY_NAME = companyName;
+    }
+
+    public static Greenline getInstance(){
+        if (greenline == null){
+            greenline = new Greenline(COMPANY_NAME);
+            System.out.println("====================================");
+            System.out.println(COMPANY_NAME);
+            greenline.promptMenu();
+        }
+        return greenline;
     }
 
     public void promptMenu() {

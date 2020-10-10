@@ -1,7 +1,5 @@
 package com.mriduava;
 
-import java.util.ArrayList;
-
 public abstract class Employee implements User {
     private String name;
     private int id;
