@@ -12,16 +12,16 @@ public class Seat {
         this.seats.add(seatNumber);
     }
 
-    public Iterator<Integer> getIterator(){
+   /* public Iterator<Integer> getIterator(){
         return new SeatIterator(this);
-    }
+    }*/
 
     public Set<Integer> getData(){
         return this.seats;
     }
 
 
-    public class SeatIterator implements Iterator<Integer> {
+/*    public class SeatIterator implements Iterator<Integer> {
         private Iterator<Integer> iterator;
 
         public SeatIterator(Seat seat) {
@@ -40,6 +40,6 @@ public class Seat {
             }
             return null;
         }
-    }
+    }*/
 
 }

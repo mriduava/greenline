@@ -1,12 +1,16 @@
 package com.mriduava;
 
+import java.security.PrivateKey;
+
 public class Bus {
     private String regNumber;
-    private int NUMBER_OF_SEATS = 20;
+    private Seat seat;
+    private Destination destination;
 
-    public Bus(String regNumber, int NUMBER_OF_SEATS) {
+    public Bus(String regNumber, Seat seat, Destination destination) {
         this.regNumber = regNumber;
-        this.NUMBER_OF_SEATS = NUMBER_OF_SEATS;
+        this.seat = seat;
+        this.destination = destination;
     }
 
     public String getRegNumber() {
@@ -17,7 +21,25 @@ public class Bus {
         this.regNumber = regNumber;
     }
 
+    public Seat getSeat() {
+        return seat;
+    }
+
+    public void setSeat(Seat seat) {
+        this.seat = seat;
+    }
+
+    public Destination getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Destination destination) {
+        this.destination = destination;
+    }
+
     public String toString(){
-        return "Bus Registration Number: " + regNumber.toUpperCase();
+        return "Registration Number: " + regNumber.toUpperCase() + "\n"
+                + "Seats: " + seat.getData() + "\n"
+                + "Destinations: " + destination.getData();
     }
 }

@@ -37,6 +37,7 @@ public class Greenline {
                     showAvailableSeats();
                     break;
                 case RESERVE_SEAT:
+                    showDestination();
                     break;
                 case MY_BOOKING:
                     showUsers();
@@ -150,10 +151,25 @@ public class Greenline {
         for(int i=1; i<=20; i++){
             seat.add(i);
         }
-        Iterator<Integer> it = seat.getIterator();
+       /* Iterator<Integer> it = seat.getIterator();
         while (it.hasNext()){
             System.out.println(it.next() + " ");
-        }
+        }*/
+    }
+
+    Destination destination = new Destination();
+
+    public void showDestination(){
+        destination.add("Köpenhamn");
+        destination.add("Göteborg");
+        destination.add("Oslo");
+        showAvailableSeats();
+        Bus bus = new Bus("TWY76S", seat,destination);
+        /*Iterator<String> it = destination.getIterator();*/
+        /*while (it.hasNext()){
+            System.out.println(it.next() + " ");
+        }*/
+        System.out.println(bus.toString());
     }
 
 }
