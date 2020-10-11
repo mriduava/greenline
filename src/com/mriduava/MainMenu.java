@@ -11,6 +11,7 @@ public class MainMenu {
         RESERVE_SEAT("RESERVE SEAT"),
         MY_BOOKING("MY BOOKING"),
         ALL_USERS("SHOW ALL USERS"),
+        RENTED_BUSES("RENTED BUSES"),
         EXIT("EXIT PROGRAM");
 
         private String description;
