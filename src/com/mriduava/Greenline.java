@@ -1,4 +1,5 @@
 package com.mriduava;
+import java.awt.print.Book;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,7 +30,6 @@ public class Greenline {
 
     /**
      * To display menu items and
-     * get
      */
     public void promptMenu() {
         MainMenu.MenuItems menuItems;
@@ -42,11 +42,8 @@ public class Greenline {
                 case USER_LOGIN:
                     loginUser();
                     break;
-                case AVAILABLE_SEATS:
-                    break;
-                case RESERVE_SEAT:
-                    break;
-                case MY_BOOKING:
+                case BUSES_DESTINATIONS:
+                    showBusInfo();
                     break;
                 case ALL_USERS:
                     showUsers();
@@ -61,8 +58,11 @@ public class Greenline {
         } while (menuItems != menuItems.EXIT);
     }
 
+    /**
+     * To Register User
+     */
     public void registerUser(){
-        System.out.println("SUBSCRIBER REGISTRATION" +
+        System.out.println("USER REGISTRATION" +
                 "\n=======================");
         Scanner scan = new Scanner(System.in);
         System.out.println("WRITE A ROLE ('ADMIN', 'DRIVER', 'PASSENGER'): ");
@@ -72,7 +72,7 @@ public class Greenline {
         do {
             System.out.println("USERNAME: ");
             name = scan.nextLine();
-            if (!existUsername(name, role)){
+            if (!existUsername(name)){
                 boolean isNumber;
                 do {
                     System.out.println("PIN CODE (4 digit): ");
@@ -80,7 +80,6 @@ public class Greenline {
                     id = scan.nextLine();
                     if (id.length() == 4 && id.matches(regex)) {
                         int id2 = Integer.valueOf(id);
-
                         if (role.toLowerCase().equals("admin")){
                             Employee admin = new Admin(name, id2, role);
                             users.add(admin);
@@ -115,16 +114,17 @@ public class Greenline {
         }
     }
 
+    /**
+     * To Login User
+     */
     public void loginUser(){
         System.out.println("USER LOGIN" +
                 "\n================");
         Scanner scan = new Scanner(System.in);
-        System.out.println("WRITE YOUR ROLE ('ADMIN', 'DRIVER', 'PASSENGER'): ");
-        String role = scan.nextLine();
         String name, id;
         System.out.println("ENTER THE USERNAME: ");
         name = scan.nextLine();
-        if (existUsername(name, role)){
+        if (existUsername(name)){
             boolean isNumber;
             int tryCount = 1;
             do {
@@ -135,7 +135,7 @@ public class Greenline {
                     int id2 = Integer.parseInt(id);
                     if (existUser(name, id2)){
                         isNumber = true;
-                        System.out.println("Welcome " + name.toUpperCase() + " !");
+                        System.out.println("Hello " + name.toUpperCase() + " !");
                     }else {
                         isNumber = false;
                         if (tryCount < 3){
@@ -149,7 +149,7 @@ public class Greenline {
                 } else {
                     isNumber = false;
                     if (tryCount < 3){
-                        System.out.println("Not a 4 digit number");
+                        System.out.println("OBS! It's not a 4 digit number");
                         tryCount++;
                     }else {
                         System.out.println("Sorry! Try later...");
@@ -162,17 +162,29 @@ public class Greenline {
         }
     }
 
-    public boolean existUsername(String name, String role){
-        name= name.toLowerCase();
-        role = role.toLowerCase();
+    /**
+     * Function to search the username in the Array.
+     * This function was created to avoid the creation of
+     * multiple users with the same username.
+     * @param name String name
+     * @return true or false
+     */
+    public boolean existUsername(String name){
         for (User user: users){
-            if ((user.getName().toLowerCase() == name) && (user.getRole().toLowerCase() == role)){
+            if (user.getName().equals(name.toLowerCase())){
                 return true;
             }
         }
         return false;
     }
 
+    /**
+     * Search the Pin Code in the Array.
+     * This function was created to avoid the creation of
+     * multiple users with the same username.
+     * @param pinCode String name
+     * @return true or false
+     */
     public boolean existUser(String username, int pinCode){
         for (User user: users){
             if (user.getName().toLowerCase().equals(username.toLowerCase()) && user.getId() == pinCode ){
@@ -185,9 +197,23 @@ public class Greenline {
     /**
      * To show Rented buses by the Greenline company
      */
+    Bus bus = new BusAdapter();
     public void showRentedBuses(){
-        BusAdapter busAdapter = new BusAdapter();
-        busAdapter.getBusInfo();
+        bus.getBusInfo();
     }
+
+    /**
+     * Show available Buses and Bus Routes
+     */
+    public void showBusInfo(){
+        System.out.println("---------------------------\n" +
+                "AVAILABLE BUSES \n" +
+                "---------------------------");
+        bus.getBusInfo();
+        Route route = new Route();
+        System.out.println( route.toString());
+
+    }
+
 
 }

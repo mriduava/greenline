@@ -6,12 +6,9 @@ public class MainMenu {
     public enum MenuItems{
         USER_REGISTRATION("USER REGISTRATION"),
         USER_LOGIN("USER LOGIN"),
-        AVAILABLE_BUS("BUSES AND DESTINATIONS"),
-        AVAILABLE_SEATS("AVAILABLE SEATS"),
-        RESERVE_SEAT("RESERVE SEAT"),
-        MY_BOOKING("MY BOOKING"),
+        BUSES_DESTINATIONS("BUSES AND DESTINATIONS"),
         ALL_USERS("SHOW ALL USERS"),
-        RENTED_BUSES("RENTED BUSES"),
+        RENTED_BUSES("ALL RENTED BUSES"),
         EXIT("EXIT PROGRAM");
 
         private String description;
