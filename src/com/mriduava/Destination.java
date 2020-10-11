@@ -1,6 +1,7 @@
 package com.mriduava;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Destination {
@@ -10,15 +11,15 @@ public class Destination {
         this.destinations.add(destination);
     }
 
-/*    public Iterator<String> getIterator(){
+    public Iterator<String> getIterator(){
         return new DestinationIterator(this);
-    }*/
+    }
 
     public Set<String> getData(){
         return this.destinations;
     }
 
- /*   public class DestinationIterator implements Iterator<String> {
+    public class DestinationIterator implements Iterator<String> {
         private Iterator<String> iterator;
 
         public DestinationIterator(Destination destination) {
@@ -37,5 +38,5 @@ public class Destination {
             }
             return null;
         }
-    }*/
+    }
 }
