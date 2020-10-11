@@ -2,12 +2,8 @@ package com.mriduava;
 
 public class Admin extends Employee{
 
-    public Admin(String name, int id, int salary) {
-        super(name, id, salary);
+    public Admin(String name, int id, String role) {
+        super(name, id, role);
     }
 
-    public String toString(){
-        return "Welcoem " + getName() + "\n" +
-                "Role: Admin";
-    }
 }

@@ -3,12 +3,12 @@ package com.mriduava;
 public abstract class Employee implements User {
     private String name;
     private int id;
-    private int salary;
+    private String role;
 
-    public Employee(String name, int id, int salary) {
+    public Employee(String name, int id, String role) {
         this.name = name;
-        this.salary = salary;
-        this.salary = salary;
+        this.id = id;
+        this.role = role;
     }
 
     @Override
@@ -21,12 +21,17 @@ public abstract class Employee implements User {
         return this.id;
     }
 
-    public int getSalary() {
-        return salary;
+    @Override
+    public String getRole() {
+        return this.role;
     }
 
-    public void setSalary(int salary) {
-        this.salary = salary;
+    @Override
+    public String toString() {
+        return "Employee {" +
+                "Name: " + name.toUpperCase() + '\'' +
+                ", Id: " + id +
+                ", Role: " + role.toUpperCase() +
+                '}';
     }
-
 }

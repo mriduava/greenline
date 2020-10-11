@@ -5,11 +5,15 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 public class Greenline {
-
-    private ArrayList<Passenger> passengers = new ArrayList<>();
+    private ArrayList<User> users = new ArrayList<>();
 
     private static Greenline greenline;
     private static String COMPANY_NAME = "GREEN LINE";
+
+    /**
+     * To Apply the Singleton design patter
+     * The constructor is private
+     */
     private Greenline(String companyName){
         this.COMPANY_NAME = companyName;
     }
@@ -30,18 +34,10 @@ public class Greenline {
         do {
             menuItems = MainMenu.showMenuAndGetChoice();
             switch (menuItems) {
-                case ADMIN_REGISTRATION:
+                case USER_REGISTRATION:
                     registerUser();
                     break;
-                case DRIVER_REGISTRATION:
-                    break;
-                case PASSENGER_REGISTRATION:
-                    break;
-                case ADMIN_LOGIN:
-                    break;
-                case DRIVER_LOGIN:
-                    break;
-                case PASSENGER_LOGIN:
+                case USER_LOGIN:
                     loginUser();
                     break;
                 case AVAILABLE_SEATS:
@@ -51,6 +47,8 @@ public class Greenline {
                     showDestination();
                     break;
                 case MY_BOOKING:
+                    break;
+                case ALL_USERS:
                     showUsers();
                     break;
                 case EXIT:
@@ -65,6 +63,9 @@ public class Greenline {
         System.out.println("USER REGISTRATION" +
                 "\n==================");
         Scanner scan = new Scanner(System.in);
+        System.out.println("WRITE A ROLE ('ADMIN', 'DRIVER', 'PASSENGER'): ");
+        String role = scan.nextLine();
+
         String name, id;
         System.out.println("USERNAME: ");
         name = scan.nextLine();
@@ -76,8 +77,18 @@ public class Greenline {
             if (id.length() == 4 && id.matches(regex)) {
                 isNumber = true;
                 int id2 = Integer.valueOf(id);
-                User passenger = new Passenger(name, id2);
-                passengers.add((Passenger)passenger);
+                if (role.toLowerCase().equals("admin")){
+                    Employee admin = new Admin(name, id2, role);
+                    users.add(admin);
+                } else if(role.toLowerCase().equals("driver")){
+                    Employee driver = new Driver(name, id2, role);
+                    users.add(driver);
+                }else if(role.toLowerCase().equals("passenger")){
+                    User passenger = new Passenger(name, id2, role);
+                    users.add(passenger);
+                }else {
+                    System.out.println("User Registration not Successful! \nWrite your correct role!");
+                }
             } else {
                 isNumber = false;
                 System.out.println("Please enter a 4 digit number...");
@@ -86,9 +97,10 @@ public class Greenline {
     }
 
     public void showUsers(){
-        for (int i = 0; i< passengers.size(); i++){
-            System.out.println("NAME: " + passengers.get(i).getName().toUpperCase() +
-                    "\n--------------------------");
+        if (users != null){
+            for (User user: users){
+                System.out.println(user.toString());
+            }
         }
     }
 
@@ -138,7 +150,7 @@ public class Greenline {
     }
 
     public boolean existUsername(String name){
-        for (Passenger user: passengers){
+        for (User user: users){
             if (user.getName().equals(name.toLowerCase())){
                 return true;
             }
@@ -147,7 +159,7 @@ public class Greenline {
     }
 
     public boolean existUser(String username, int pinCode){
-        for (Passenger user: passengers){
+        for (User user: users){
             if (user.getName().toLowerCase().equals(username.toLowerCase()) && user.getId() == pinCode ){
                 return true;
             }
